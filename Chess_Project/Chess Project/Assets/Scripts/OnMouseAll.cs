@@ -22,10 +22,4 @@ public class OnMouseAll : MonoBehaviour {
     {
         rend.material.color = fcolor;
     }
-
-    private void OnMouseDown()
-    {
-        //resto de vainas locas para el movimiento del objeto
-
-    }
 }
