@@ -1,8 +1,7 @@
 /*
 /*/
-
 !.gitignore
 !.gitattributes
 !README.md
-!/Assets/
-!/ProjectSettings/
+!Chess_Project/Chess Project/Assets/
+!Chess_Project/Chess Project/ProjectSettings/
