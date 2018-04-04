@@ -22,6 +22,7 @@ GameObject:
   - component: {fileID: 33535569587848706}
   - component: {fileID: 136873633098419352}
   - component: {fileID: 23422279863524384}
+  - component: {fileID: 114345934271532118}
   m_Layer: 0
   m_Name: Caballo
   m_TagString: Untagged
@@ -83,6 +84,19 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1054457430809728}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114345934271532118
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1054457430809728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 705dff13c5557bb4fa9de2446546886d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  pos: {x: 0, y: 0, z: 0}
+  height: 1.2
 --- !u!136 &136873633098419352
 CapsuleCollider:
   m_ObjectHideFlags: 1
