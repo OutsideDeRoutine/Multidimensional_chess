@@ -54,10 +54,7 @@ public class Map : MonoBehaviour
                         //definimos posicion lógica de los tiles (se guarda dentro de TileData)
                         tile.GetComponent<TileData>().setPosition(x , y, z);
                         tile.name = "Tile_" + x + "-" + z + "_nivel:" + y;
-                        if (generateCharAtPos(new Vector3(x, y , z)))
-                        {
-                            tile.GetComponent<TileData>().state = 1;
-                        }
+                            tile.GetComponent<TileData>().setCharacter(generateCharAtPos(new Vector3(x, y, z)));
                     }
                 }
                 x++;
@@ -68,16 +65,15 @@ public class Map : MonoBehaviour
     }
 
     //Método para generar a los personajes jugables sobre los tiles del tablero
-    private bool generateCharAtPos(Vector3 pos)
+    private GameObject generateCharAtPos(Vector3 pos)
     {
         ficha colocar=fichas.Find(x=>x.pos.Equals(pos));
-        if(colocar.Equals( default(ficha))) return false;
+        if(colocar.Equals( default(ficha))) return null;
 
         GameObject fc = Instantiate(Resources.Load(colocar.resource, typeof(GameObject))) as GameObject;
         fc.name = colocar.name;
         fc.GetComponent<CharData>().setTeam(colocar.tag);
-        fc.GetComponent<CharData>().colocar(new Vector3(colocar.pos.x, colocar.pos.y* -yDif, colocar.pos.z));
-        return true;
+        return fc;
 
 
         /*

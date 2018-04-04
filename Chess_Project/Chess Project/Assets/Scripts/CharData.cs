@@ -6,14 +6,7 @@ using UnityEngine;
 public class CharData : MonoBehaviour {
 
     public Vector3 pos;
-    public float height=0.8f;
-
-
-    public void colocar(Vector3 pos)
-    {
-        this.transform.position = pos + new Vector3(0f, height, 0f);
-        this.pos = pos;
-    }
+    public GameObject tile;
 
     internal void setTeam(string tag)
     {
