@@ -15,11 +15,23 @@ public class OnMouseAll : MonoBehaviour {
     void OnMouseEnter()
     {
         fcolor = rend.material.color;
-        rend.material.color = color;
+        rend.material.color += color;
     }
 
     void OnMouseExit()
     {
-        rend.material.color = fcolor;
+        rend.material.color -= color;
+    }
+
+    void OnMouseDown()
+    {
+        if(this.tag=="Blancas" || this.tag == "Negras")
+        {
+            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().AssingChar(this.gameObject);
+        }
+        else if(this.tag == "Tile")
+        {
+
+        }
     }
 }

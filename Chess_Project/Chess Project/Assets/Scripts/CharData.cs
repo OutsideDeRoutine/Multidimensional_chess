@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class CharData : MonoBehaviour {
 
-    public Vector3 pos;
+    //public Vector3 pos;
     public GameObject tile;
 
     internal void setTeam(string tag)
