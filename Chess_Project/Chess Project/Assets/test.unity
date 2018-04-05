@@ -208,22 +208,6 @@ MonoBehaviour:
     resource: Caballo
     pos: {x: 5, y: 2, z: 0}
     tag: Negras
-  - name: GemeloBlanco1
-    resource: Gemelo
-    pos: {x: 3, y: 0, z: 4}
-    tag: Blancas
-  - name: GemeloBlanco2
-    resource: Gemelo
-    pos: {x: 3, y: 1, z: 4}
-    tag: Blancas
-  - name: GemeloNegro1
-    resource: Gemelo
-    pos: {x: 5, y: 2, z: 4}
-    tag: Negras
-  - name: GemeloNegro2
-    resource: Gemelo
-    pos: {x: 5, y: 1, z: 4}
-    tag: Negras
 --- !u!4 &1193522705
 Transform:
   m_ObjectHideFlags: 0
