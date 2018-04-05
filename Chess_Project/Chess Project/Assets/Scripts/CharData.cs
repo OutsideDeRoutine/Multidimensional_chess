@@ -2,22 +2,30 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Events;
 
 public class CharData : MonoBehaviour {
 
-    //public Vector3 pos;
     public GameObject tile;
+    public UnityEvent canMoveThere;
 
+    //Called once when creating table
     internal void setTeam(string tag)
     {
+        Renderer render = GetComponent<Renderer>();
         this.tag = tag;
         if (tag.Equals("Blancas"))
         {
-            GetComponent<Renderer>().material.color = Color.white;
+            render.material.color = Color.white;
         } 
         else if (tag.Equals("Negras"))
         {
-            GetComponent<Renderer>().material.color = Color.grey;
+            render.material.color = Color.grey;
         }
+    }
+
+    public Vector3 getTilePosition()
+    {
+       return this.tile.GetComponent<TileData>().position;
     }
 }

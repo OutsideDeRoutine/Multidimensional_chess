@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 23559806154152848}
   - component: {fileID: 114237471779599234}
   - component: {fileID: 114072689789669660}
+  - component: {fileID: 114120442503785800}
   m_Layer: 0
   m_Name: Gemelo
   m_TagString: Untagged
@@ -109,6 +110,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0.41911763, g: 0.41911763, b: 0.41911763, a: 1}
+--- !u!114 &114120442503785800
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1369526965815860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 752fd4d73ed210847931f8b2ead1bd25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114237471779599234
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -121,3 +133,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tile: {fileID: 0}
+  canMoveThere:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114120442503785800}
+        m_MethodName: PossibleMovTiles
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null

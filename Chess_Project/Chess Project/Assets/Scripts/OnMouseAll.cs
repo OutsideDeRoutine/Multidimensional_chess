@@ -6,15 +6,16 @@ public class OnMouseAll : MonoBehaviour {
 
     private Renderer rend;
     public Color color=Color.gray;
-    private Color fcolor;
+    private PlayerController player;
+
     void Start()
     {
         rend = GetComponent<Renderer>();
+        player=GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
 
     void OnMouseEnter()
     {
-        fcolor = rend.material.color;
         rend.material.color += color;
     }
 
@@ -27,11 +28,24 @@ public class OnMouseAll : MonoBehaviour {
     {
         if(this.tag=="Blancas" || this.tag == "Negras")
         {
-            GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().AssingChar(this.gameObject);
+            player.AssingChar(this.gameObject);
         }
         else if(this.tag == "Tile")
         {
-
+            if (this.GetComponent<TileData>().state == 2 && player.selectedChar!=null)
+            {
+                //Mover  , resetear tablero , cambiar de jugador
+                ArrayList all = new ArrayList(GameObject.FindGameObjectsWithTag("Tile"));
+                foreach (GameObject tile in all)
+                {
+                    if (tile.GetComponent<TileData>().state == 2)
+                    {
+                        tile.GetComponent<TileData>().unSetMovableTo();
+                    }
+                }
+                GetComponent<TileData>().setCharacter(player.selectedChar);
+                player.ChangePlayer();
+            }
         }
     }
 }
