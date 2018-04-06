@@ -15,7 +15,7 @@ public class TileData : MonoBehaviour {
         position = new Vector3(x,y,z);
     }
 
-    internal void setCharacter(GameObject v)
+    internal void setCharacter(GameObject v,bool instant=false)
     {
         if (v != null)
         {
@@ -27,7 +27,27 @@ public class TileData : MonoBehaviour {
             }
             character.GetComponent<CharData>().tile = this.gameObject;
             state = 1;
-            character.transform.position = this.transform.position+new Vector3(0f,this.GetComponent<Collider>().bounds.size.y/2 + character.GetComponent<Collider>().bounds.size.y / 2, 0f);
+            Vector3 position = this.transform.position+new Vector3(0f,this.GetComponent<Collider>().bounds.size.y/2 + character.GetComponent<Collider>().bounds.size.y / 2, 0f);
+            if(instant) v.transform.position = position;
+            else StartCoroutine(moveChar(v, position));
+
+        }
+    }
+
+    private IEnumerator moveChar(GameObject v, Vector3 position)
+    {
+        while (Vector3.Distance(v.transform.position, position)!=0)
+        {
+            if (v.transform.position.y== position.y)
+            {
+                v.transform.position = Vector3.MoveTowards(v.transform.position, position, 10f * Time.deltaTime);
+            }
+            else
+            {
+                v.transform.position += new Vector3(0f, Mathf.Clamp(-v.transform.position.y + position.y , -10f * Time.deltaTime, 10f * Time.deltaTime), 0f);
+            }
+               
+            yield return new WaitForFixedUpdate();
         }
     }
 

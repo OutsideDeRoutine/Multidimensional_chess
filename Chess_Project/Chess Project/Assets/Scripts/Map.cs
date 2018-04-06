@@ -54,7 +54,7 @@ public class Map : MonoBehaviour
                         //definimos posicion lógica de los tiles (se guarda dentro de TileData)
                         tile.GetComponent<TileData>().setPosition(x , y, z);
                         tile.name = "Tile_" + x + "-" + z + "_nivel:" + y;
-                            tile.GetComponent<TileData>().setCharacter(generateCharAtPos(new Vector3(x, y, z)));
+                            tile.GetComponent<TileData>().setCharacter(generateCharAtPos(new Vector3(x, y, z)),true);
                     }
                 }
                 x++;
