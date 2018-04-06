@@ -8,6 +8,7 @@ public class CharData : MonoBehaviour {
 
     public GameObject tile;
     public UnityEvent canMoveThere;
+    public UnityEvent canAttackThere;
 
     //Called once when creating table
     internal void setTeam(string tag)

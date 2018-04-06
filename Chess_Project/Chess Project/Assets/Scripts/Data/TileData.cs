@@ -7,7 +7,7 @@ public class TileData : MonoBehaviour {
 
     public Vector3 position;
     public GameObject character;
-    public int state = 0; //0 - empty   1 - full    2- actually movible to
+    public int state = 0; //0 - empty   1 - full    2- actually movible to      3- actually attack posible
 
 
     public void setPosition(int x, int y, int z)
@@ -33,6 +33,7 @@ public class TileData : MonoBehaviour {
 
         }
     }
+
 
     private IEnumerator moveChar(GameObject v, Vector3 position)
     {
@@ -68,5 +69,28 @@ public class TileData : MonoBehaviour {
     {
         state = 0;
         GetComponent<Renderer>().material.color -= Color.green;
+    }
+
+
+    internal void unSetAttackTo()
+    {
+        state = 1;
+        GetComponent<Renderer>().material.color -= Color.red;
+    }
+
+
+    internal void setAttackTo()
+    {
+        state = 3;
+        GetComponent<Renderer>().material.color += Color.red;
+    }
+
+
+    internal void destroyChar()
+    {
+        GameObject.Destroy(character);
+        character = null;
+        state = 0;
+
     }
 }
