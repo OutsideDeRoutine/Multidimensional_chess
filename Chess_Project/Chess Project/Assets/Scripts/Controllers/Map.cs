@@ -74,17 +74,6 @@ public class Map : MonoBehaviour
         fc.name = colocar.name;
         fc.GetComponent<CharData>().setTeam(colocar.tag);
         return fc;
-
-
-        /*
-         Cosas a quizá tener en cuenta:
-            usar un prefab para las piezas (de manera general) y luego especificarlas en codigo
-            definir un mouseClick o algo parrecido luego para las fichas
-
-            habrá que ver como mover luego las piezas entre las islas
-         
-            suicidio :)
-         */
     }
 
 }

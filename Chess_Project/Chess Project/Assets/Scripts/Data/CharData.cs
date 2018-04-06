@@ -10,6 +10,11 @@ public class CharData : MonoBehaviour {
     public UnityEvent canMoveThere;
     public UnityEvent canAttackThere;
 
+    //datos para el juego
+
+    public int vida;
+    public int damage;
+
     //Called once when creating table
     internal void setTeam(string tag)
     {
@@ -28,5 +33,17 @@ public class CharData : MonoBehaviour {
     public Vector3 getTilePosition()
     {
        return this.tile.GetComponent<TileData>().position;
+    }
+
+    public Boolean receibeDamage(int damageRecibed)
+    {
+        this.vida -= damageRecibed;
+        Debug.Log("A la pieza " + this.name + " le queda " + this.vida + "\n");
+        if (this.vida <= 0)
+        {
+            Debug.Log("La pieza "+ this.name + " ha muerto \n");
+            return true;
+        }       
+        return false;
     }
 }

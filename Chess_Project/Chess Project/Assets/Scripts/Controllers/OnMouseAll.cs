@@ -42,7 +42,11 @@ public class OnMouseAll : MonoBehaviour {
             else if (this.GetComponent<TileData>().state == 3 && player.selectedChar != null)
             {
                 resetAllTiles();
-                this.GetComponent<TileData>().destroyChar();
+                bool muerto =this.GetComponent<TileData>().character.GetComponent<CharData>().receibeDamage(player.selectedChar.GetComponent<CharData>().damage);
+                if (muerto == true)
+                {
+                    this.GetComponent<TileData>().destroyChar();
+                }
                 player.ChangePlayer();
             }
         }

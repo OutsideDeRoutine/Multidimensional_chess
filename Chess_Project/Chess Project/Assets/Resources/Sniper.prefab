@@ -142,6 +142,8 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  vida: 5
+  damage: 10
 --- !u!114 &114641574036656934
 MonoBehaviour:
   m_ObjectHideFlags: 1
