@@ -190,7 +190,7 @@ MonoBehaviour:
     tag: Blancas
   - name: Caminante2dNegro
     resource: 2DGuy
-    pos: {x: 8, y: 2, z: 0}
+    pos: {x: 10, y: 2, z: 4}
     tag: Negras
   - name: SniperBlanco
     resource: Sniper
@@ -198,15 +198,15 @@ MonoBehaviour:
     tag: Blancas
   - name: SniperNegro
     resource: Sniper
-    pos: {x: 8, y: 2, z: 4}
+    pos: {x: 10, y: 2, z: 0}
     tag: Negras
   - name: CaballoBlanco
     resource: Caballo
-    pos: {x: 3, y: 0, z: 0}
+    pos: {x: 2, y: 0, z: 2}
     tag: Blancas
   - name: CaballoNegro
     resource: Caballo
-    pos: {x: 5, y: 2, z: 0}
+    pos: {x: 8, y: 2, z: 2}
     tag: Negras
 --- !u!4 &1193522705
 Transform:

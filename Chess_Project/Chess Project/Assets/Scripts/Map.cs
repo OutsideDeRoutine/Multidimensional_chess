@@ -17,9 +17,9 @@ public class Map : MonoBehaviour
     public List<ficha> fichas;
 
     //patrón para la creación del tablero
-    private string sideform = "-----  --|" +
-                              "  -----  |" +
-                              "--  -----";
+    private string sideform = "----- --   |" +
+                              "   -----   |" +
+                              "   -- -----";
 
     //tamaño del tile
     private int zTiles = 5;
