@@ -27,6 +27,7 @@ public class CharData : MonoBehaviour {
         } 
         else if (tag.Equals("Negras"))
         {
+            this.transform.Rotate(0f, 180f, 0f);
             render.material.color = Color.grey;
         }
     }
