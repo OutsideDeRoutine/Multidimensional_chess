@@ -74,7 +74,7 @@ public class OnMouseAll : MonoBehaviour {
                 {
                     //los dos han muerto
                     GetComponent<TileData>().destroyChar();
-                    GetComponent<TileData>().setCharacter(player.selectedChar);
+                    GetComponent<TileData>().setCharacter(player.selectedChar,true);
                     GetComponent<TileData>().destroyChar();
                 }
                 player.ChangePlayer();
