@@ -13,6 +13,13 @@ public class TileData : MonoBehaviour {
     public void setPosition(int x, int y, int z)
     {
         position = new Vector3(x,y,z);
+        if(x%2==0 && z % 2 == 0)
+        {
+            GetComponent<Renderer>().material.color = Color.grey;
+        }else if(z % 2 != 0 && x % 2 != 0)
+        {
+            GetComponent<Renderer>().material.color = Color.grey;
+        }
     }
 
     internal void setCharacter(GameObject v,bool instant=false)
