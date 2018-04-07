@@ -49,6 +49,36 @@ public class OnMouseAll : MonoBehaviour {
                 }
                 player.ChangePlayer();
             }
+            else if (this.GetComponent<TileData>().state == 4 && player.selectedChar != null)
+            {
+                resetAllTiles();
+                /*vamos a comprobar las tres opciones
+                 * la primera es si la pieza de la casilla tiene más salud que la que se ha movido
+                 * la segunda es si la pieza de la casilla tiene menos salud que la que se ha movido
+                 * la tercera es si las dos acaban con la salud a 0
+                */
+                int vida1 = this.GetComponent<TileData>().character.GetComponent<CharData>().vida;
+                int vida2 = player.selectedChar.GetComponent<CharData>().vida;
+                bool muerto1 = player.selectedChar.GetComponent<CharData>().receibeDamage(vida1);
+                bool muerto2 = this.GetComponent<TileData>().character.GetComponent<CharData>().receibeDamage(vida2);
+                if (!muerto2 && muerto1)
+                {
+                    player.selectedChar.GetComponent<CharData>().tile.GetComponent<TileData>().destroyChar();
+                }
+                else if (muerto2 && !muerto1)
+                {
+                    GetComponent<TileData>().destroyChar();
+                    GetComponent<TileData>().setCharacter(player.selectedChar);
+                }
+                else
+                {
+                    //los dos han muerto
+                    GetComponent<TileData>().destroyChar();
+                    GetComponent<TileData>().setCharacter(player.selectedChar);
+                    GetComponent<TileData>().destroyChar();
+                }
+                player.ChangePlayer();
+            }
         }
     }
 
@@ -64,6 +94,10 @@ public class OnMouseAll : MonoBehaviour {
             if (tile.GetComponent<TileData>().state == 3)
             {
                 tile.GetComponent<TileData>().unSetAttackTo();
+            }
+            if(tile.GetComponent<TileData>().state == 4)
+            {
+                tile.GetComponent<TileData>().unSetHitTo();
             }
         }
     }

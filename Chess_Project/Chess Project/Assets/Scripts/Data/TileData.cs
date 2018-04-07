@@ -7,7 +7,7 @@ public class TileData : MonoBehaviour {
 
     public Vector3 position;
     public GameObject character;
-    public int state = 0; //0 - empty   1 - full    2- actually movible to      3- actually attack posible
+    public int state = 0; //0 - empty   1 - full    2- actually movible to      3- actually attack posible  4- actually hit posible
 
 
     public void setPosition(int x, int y, int z)
@@ -83,6 +83,18 @@ public class TileData : MonoBehaviour {
     {
         state = 3;
         GetComponent<Renderer>().material.color += Color.red;
+    }
+
+    internal void setHitTo()
+    {
+        state = 4;
+        GetComponent<Renderer>().material.color += Color.blue;
+    }
+
+    internal void unSetHitTo()
+    {
+        state = 1; //solo puede estar vacio cuando se realice el movimiento
+        GetComponent<Renderer>().material.color -= Color.blue;
     }
 
 

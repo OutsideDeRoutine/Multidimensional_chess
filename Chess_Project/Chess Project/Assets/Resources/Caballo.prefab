@@ -26,6 +26,7 @@ GameObject:
   - component: {fileID: 114798636449564900}
   - component: {fileID: 114780405283864176}
   - component: {fileID: 114422029200608930}
+  - component: {fileID: 114091710001676828}
   m_Layer: 0
   m_Name: Caballo
   m_TagString: Untagged
@@ -87,6 +88,17 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1054457430809728}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &114091710001676828
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1054457430809728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a57fb8b596ef7184e8a366ff6ccaf443, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114345934271532118
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -120,6 +132,22 @@ MonoBehaviour:
       m_Calls:
       - m_Target: {fileID: 114422029200608930}
         m_MethodName: PossibleAttackTiles
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
+  canHitThere:
+    m_PersistentCalls:
+      m_Calls:
+      - m_Target: {fileID: 114091710001676828}
+        m_MethodName: PossibleHitTiles
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

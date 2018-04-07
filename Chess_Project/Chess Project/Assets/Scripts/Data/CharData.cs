@@ -9,6 +9,7 @@ public class CharData : MonoBehaviour {
     public GameObject tile;
     public UnityEvent canMoveThere;
     public UnityEvent canAttackThere;
+    public UnityEvent canHitThere;
 
     //datos para el juego
 
@@ -45,5 +46,10 @@ public class CharData : MonoBehaviour {
             return true;
         }       
         return false;
+    }
+
+    public Boolean isDead()
+    {
+        return (vida <= 0) ? true : false;
     }
 }

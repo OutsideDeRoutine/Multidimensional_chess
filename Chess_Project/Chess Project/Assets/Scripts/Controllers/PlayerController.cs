@@ -18,6 +18,7 @@ public class PlayerController : MonoBehaviour {
             selectedChar.GetComponent<Renderer>().material.color += color;
             selectedChar.GetComponent<CharData>().canMoveThere.Invoke();
             selectedChar.GetComponent<CharData>().canAttackThere.Invoke();
+            selectedChar.GetComponent<CharData>().canHitThere.Invoke();
         }
     }
 
