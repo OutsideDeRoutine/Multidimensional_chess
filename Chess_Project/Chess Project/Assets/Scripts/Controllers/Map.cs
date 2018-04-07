@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Map : MonoBehaviour
 {
+    public Texture2D cursor;
+
     [System.Serializable]
     public struct ficha
     {
@@ -30,6 +32,8 @@ public class Map : MonoBehaviour
     // Use this for initialization
     void Start()
     {
+
+        Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
         //tiles = new Dictionary<String, GameObject>();
         GenerateMap(sideform.Split('|'));
     }

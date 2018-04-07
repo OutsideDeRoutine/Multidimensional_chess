@@ -5,11 +5,12 @@ using UnityEngine;
 public class OnMouseAll : MonoBehaviour {
 
     private Renderer rend;
-    public Color color=Color.gray;
+    public Color color = new Color();
     private PlayerController player;
 
     void Start()
     {
+        ColorUtility.TryParseHtmlString("#4D4D4DFF", out color);
         rend = GetComponent<Renderer>();
         player=GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
     }
