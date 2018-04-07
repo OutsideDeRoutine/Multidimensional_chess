@@ -64,7 +64,8 @@ public class OnMouseAll : MonoBehaviour {
                 bool muerto2 = this.GetComponent<TileData>().character.GetComponent<CharData>().receibeDamage(vida2);
                 if (!muerto2 && muerto1)
                 {
-                    player.selectedChar.GetComponent<CharData>().tile.GetComponent<TileData>().destroyChar();
+                    GameObject select=player.selectedChar;
+                    StartCoroutine(GetComponent<TileData>().moveChar(select, GetComponent<TileData>().GetPos(select), select.GetComponent<CharData>().tile.GetComponent<TileData>().destroyChar));
                 }
                 else if (muerto2 && !muerto1)
                 {
@@ -73,10 +74,8 @@ public class OnMouseAll : MonoBehaviour {
                 }
                 else
                 {
-                    //los dos han muerto
-                    GetComponent<TileData>().destroyChar();
-                    GetComponent<TileData>().setCharacter(player.selectedChar,true);
-                    GetComponent<TileData>().destroyChar();
+                    GameObject select = player.selectedChar;
+                    StartCoroutine(GetComponent<TileData>().moveChar(select, GetComponent<TileData>().GetPos(select), select.GetComponent<CharData>().tile.GetComponent<TileData>().destroyChar, GetComponent<TileData>().destroyChar));
                 }
                 player.ChangePlayer();
             }

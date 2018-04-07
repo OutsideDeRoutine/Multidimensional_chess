@@ -34,17 +34,22 @@ public class TileData : MonoBehaviour {
             }
             character.GetComponent<CharData>().tile = this.gameObject;
             state = 1;
-            Vector3 position = this.transform.position+new Vector3(0f,this.GetComponent<Collider>().bounds.size.y/2 + character.GetComponent<Collider>().bounds.size.y / 2, 0f);
-            if(instant) v.transform.position = position;
+            Vector3 position = GetPos(character);
+            if (instant) v.transform.position = position;
             else StartCoroutine(moveChar(v, position));
 
         }
     }
 
-
-    private IEnumerator moveChar(GameObject v, Vector3 position)
+    internal Vector3 GetPos(GameObject chara)
     {
-        while (Vector3.Distance(v.transform.position, position)!=0)
+        return this.transform.position + new Vector3(0f, this.GetComponent<Collider>().bounds.size.y / 2 + chara.GetComponent<Collider>().bounds.size.y / 2, 0f);
+    }
+
+
+    internal IEnumerator moveChar(GameObject v, Vector3 position, params Action[] end)
+    {
+        while (v!=null && Vector3.Distance(v.transform.position, position)!=0)
         {
             if (v.transform.position.y== position.y)
             {
@@ -54,9 +59,16 @@ public class TileData : MonoBehaviour {
             {
                 v.transform.position += new Vector3(0f, Mathf.Clamp(-v.transform.position.y + position.y , -10f * Time.deltaTime, 10f * Time.deltaTime), 0f);
             }
-               
+            if ( Vector3.Distance(v.transform.position, position) == 0 && end.Length > 0)
+            {
+                foreach(Action e in end)
+                {
+                    e();
+                }
+            }
             yield return new WaitForFixedUpdate();
         }
+        
     }
 
     private void removeChar()
