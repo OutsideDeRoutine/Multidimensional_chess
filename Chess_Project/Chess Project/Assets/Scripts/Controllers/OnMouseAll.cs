@@ -130,8 +130,10 @@ public class OnMouseAll : MonoBehaviour {
 
     IEnumerator MoveCoroutine(GameObject v, Vector3 position, float vel)
     {
+        yield return new WaitForSeconds(0.7f);
         while (Vector3.Distance(v.transform.position, position) != 0)
         {
+            
             v.transform.position = Vector3.MoveTowards(v.transform.position, position, vel * Time.deltaTime);
             yield return new WaitForFixedUpdate();
         }
