@@ -56,6 +56,6 @@ public class CharData : MonoBehaviour {
 
     internal string getData()
     {
-        return vida + "/" + damage;
+        return damage+ "T " + vida + "♥" ;
     }
 }

@@ -9,8 +9,6 @@ public class OnMouseAll : MonoBehaviour {
     private PlayerController player;
     public string card;
     public GameObject cardo;
-    public Vector3 moveCardTo;
-    public Vector3 moveCardFrom;
     void Start()
     {
         ColorUtility.TryParseHtmlString("#4D4D4DFF", out color);
@@ -19,20 +17,30 @@ public class OnMouseAll : MonoBehaviour {
         if (card != "")
         {
             cardo = GameObject.Find(card);
-            cardo.transform.position = moveCardFrom;
         }
     }
+
+    Coroutine stopMe;
 
     void OnMouseEnter()
     {
         rend.material.color += color;
-        if(cardo != null) moveCard();
+        if (cardo != null)
+        {
+            cardo.GetComponentInChildren<UnityEngine.UI.Text>().text = GetComponent<CharData>().getData();
+            if(stopMe!=null) StopCoroutine(stopMe);
+            stopMe = StartCoroutine(moveCard());
+        }
     }
 
     void OnMouseExit()
     {
         rend.material.color -= color;
-        if (cardo != null) moveCardBack();
+        if (cardo != null)
+        {
+            if (stopMe != null) StopCoroutine(stopMe);
+            stopMe = StartCoroutine(moveCardBack());
+        }
     }
 
     void OnMouseDown()
@@ -112,30 +120,17 @@ public class OnMouseAll : MonoBehaviour {
         }
     }
 
-
-    Coroutine theCoroutin;
-    void moveCard()
+    IEnumerator moveCard()
     {
-        cardo.GetComponentInChildren<UnityEngine.UI.Text>().text = this.GetComponent<CharData>().getData();
-        if(theCoroutin!=null) StopCoroutine(theCoroutin);
-        theCoroutin = StartCoroutine(MoveCoroutine(cardo,moveCardTo,500f));
+        yield return new WaitForSeconds(0.8f);
+        cardo.GetComponent<Show>().showing = true;
     }
 
 
-    void moveCardBack()
+    IEnumerator moveCardBack()
     {
-        if (theCoroutin != null) StopCoroutine(theCoroutin);
-        theCoroutin=StartCoroutine(MoveCoroutine(cardo,moveCardFrom,350f));
+        yield return new WaitForSeconds(0.8f);
+        cardo.GetComponent<Show>().showing = false;
     }
 
-    IEnumerator MoveCoroutine(GameObject v, Vector3 position, float vel)
-    {
-        yield return new WaitForSeconds(0.7f);
-        while (Vector3.Distance(v.transform.position, position) != 0)
-        {
-            
-            v.transform.position = Vector3.MoveTowards(v.transform.position, position, vel * Time.deltaTime);
-            yield return new WaitForFixedUpdate();
-        }
-    }
 }
