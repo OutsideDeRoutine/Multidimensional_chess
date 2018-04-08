@@ -10,7 +10,7 @@ public class OnMouseAll : MonoBehaviour {
     public string card;
     public GameObject cardo;
     public Vector3 moveCardTo;
-    private Vector3 moveCardFrom;
+    public Vector3 moveCardFrom;
     void Start()
     {
         ColorUtility.TryParseHtmlString("#4D4D4DFF", out color);
@@ -19,7 +19,7 @@ public class OnMouseAll : MonoBehaviour {
         if (card != "")
         {
             cardo = GameObject.Find(card);
-            moveCardFrom = cardo.transform.position;
+            cardo.transform.position = moveCardFrom;
         }
     }
 

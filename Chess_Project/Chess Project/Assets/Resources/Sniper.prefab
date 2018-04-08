@@ -213,6 +213,7 @@ MonoBehaviour:
   card: Sniper
   cardo: {fileID: 0}
   moveCardTo: {x: 115, y: 145, z: 0}
+  moveCardFrom: {x: 115, y: -150, z: 0}
 --- !u!136 &136815473483306280
 CapsuleCollider:
   m_ObjectHideFlags: 1

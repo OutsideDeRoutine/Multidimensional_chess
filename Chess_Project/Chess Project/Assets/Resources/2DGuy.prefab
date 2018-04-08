@@ -202,6 +202,7 @@ MonoBehaviour:
   card: Guy
   cardo: {fileID: 0}
   moveCardTo: {x: 115, y: 145, z: 0}
+  moveCardFrom: {x: 115, y: -150, z: 0}
 --- !u!114 &114802455881284674
 MonoBehaviour:
   m_ObjectHideFlags: 1
