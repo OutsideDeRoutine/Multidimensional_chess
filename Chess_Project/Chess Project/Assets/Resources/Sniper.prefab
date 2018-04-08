@@ -210,6 +210,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   color: {r: 0.41911763, g: 0.41911763, b: 0.41911763, a: 1}
+  card: Sniper
+  cardo: {fileID: 0}
+  moveCardTo: {x: 115, y: 145, z: 0}
 --- !u!136 &136815473483306280
 CapsuleCollider:
   m_ObjectHideFlags: 1

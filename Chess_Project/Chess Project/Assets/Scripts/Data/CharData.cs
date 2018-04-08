@@ -53,4 +53,9 @@ public class CharData : MonoBehaviour {
     {
         return (vida <= 0) ? true : false;
     }
+
+    internal string getData()
+    {
+        return vida + "/" + damage;
+    }
 }

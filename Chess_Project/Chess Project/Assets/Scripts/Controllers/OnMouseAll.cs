@@ -7,22 +7,32 @@ public class OnMouseAll : MonoBehaviour {
     private Renderer rend;
     public Color color = new Color();
     private PlayerController player;
-
+    public string card;
+    public GameObject cardo;
+    public Vector3 moveCardTo;
+    private Vector3 moveCardFrom;
     void Start()
     {
         ColorUtility.TryParseHtmlString("#4D4D4DFF", out color);
         rend = GetComponent<Renderer>();
         player=GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        if (card != "")
+        {
+            cardo = GameObject.Find(card);
+            moveCardFrom = cardo.transform.position;
+        }
     }
 
     void OnMouseEnter()
     {
         rend.material.color += color;
+        if(cardo != null) moveCard();
     }
 
     void OnMouseExit()
     {
         rend.material.color -= color;
+        if (cardo != null) moveCardBack();
     }
 
     void OnMouseDown()
@@ -99,6 +109,31 @@ public class OnMouseAll : MonoBehaviour {
             {
                 tile.GetComponent<TileData>().unSetHitTo();
             }
+        }
+    }
+
+
+    Coroutine theCoroutin;
+    void moveCard()
+    {
+        cardo.GetComponentInChildren<UnityEngine.UI.Text>().text = this.GetComponent<CharData>().getData();
+        if(theCoroutin!=null) StopCoroutine(theCoroutin);
+        theCoroutin = StartCoroutine(MoveCoroutine(cardo,moveCardTo,500f));
+    }
+
+
+    void moveCardBack()
+    {
+        if (theCoroutin != null) StopCoroutine(theCoroutin);
+        theCoroutin=StartCoroutine(MoveCoroutine(cardo,moveCardFrom,350f));
+    }
+
+    IEnumerator MoveCoroutine(GameObject v, Vector3 position, float vel)
+    {
+        while (Vector3.Distance(v.transform.position, position) != 0)
+        {
+            v.transform.position = Vector3.MoveTowards(v.transform.position, position, vel * Time.deltaTime);
+            yield return new WaitForFixedUpdate();
         }
     }
 }
