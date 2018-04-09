@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: 114145669914649040}
   - component: {fileID: 114023354478110062}
   - component: {fileID: 64966078790579752}
+  - component: {fileID: 114539512236827186}
   m_Layer: 0
   m_Name: 2DGuy
   m_TagString: Untagged
@@ -174,6 +175,11 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  canHitTheKing:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   vida: 15
   damage: 5
 --- !u!114 &114145669914649040
@@ -201,8 +207,17 @@ MonoBehaviour:
   color: {r: 0.41911763, g: 0.41911763, b: 0.41911763, a: 1}
   card: Guy
   cardo: {fileID: 0}
-  moveCardTo: {x: 115, y: 145, z: 0}
-  moveCardFrom: {x: 115, y: -150, z: 0}
+--- !u!114 &114539512236827186
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1198647590162968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf55324c449086c458d01f160c523995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114802455881284674
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -7,7 +7,8 @@ public interface IHit
 {
 
     bool can(Vector3 from, Vector3 where);
-
+    bool controlIsla(Vector3 fromo, Vector3 where, ArrayList all);
+    void PossibleHitTiles();
 }
 
 public abstract class AbstractHit: MonoBehaviour,IHit

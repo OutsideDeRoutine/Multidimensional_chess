@@ -13,7 +13,5 @@ public class Show : MonoBehaviour {
             transform.position = Vector3.MoveTowards(transform.position, positionGo, 500f * Time.deltaTime);
         else
             transform.position = Vector3.MoveTowards(transform.position, positionBack, 500f * Time.deltaTime);
-
-
     }
 }

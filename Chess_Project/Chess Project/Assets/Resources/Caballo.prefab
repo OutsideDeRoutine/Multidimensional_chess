@@ -28,6 +28,7 @@ GameObject:
   - component: {fileID: 114422029200608930}
   - component: {fileID: 114091710001676828}
   - component: {fileID: 64501887959184182}
+  - component: {fileID: 114567817968899008}
   m_Layer: 0
   m_Name: Caballo
   m_TagString: Untagged
@@ -174,6 +175,11 @@ MonoBehaviour:
         m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
+  canHitTheKing:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
+      Culture=neutral, PublicKeyToken=null
   vida: 10
   damage: 15
 --- !u!114 &114422029200608930
@@ -185,6 +191,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 464676fb7b265e5449661dfa48e0ad5f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114567817968899008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1054457430809728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf55324c449086c458d01f160c523995, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114780405283864176
@@ -212,8 +229,6 @@ MonoBehaviour:
   color: {r: 0.41911763, g: 0.41911763, b: 0.41911763, a: 1}
   card: Caballo
   cardo: {fileID: 0}
-  moveCardTo: {x: 115, y: 145, z: 0}
-  moveCardFrom: {x: 115, y: -150, z: 0}
 --- !u!136 &136873633098419352
 CapsuleCollider:
   m_ObjectHideFlags: 1

@@ -58,7 +58,7 @@ public class Map : MonoBehaviour
                         //definimos posicion lógica de los tiles (se guarda dentro de TileData)
                         tile.GetComponent<TileData>().setPosition(x , y, z);
                         tile.name = "Tile_" + x + "-" + z + "_nivel:" + y;
-                            tile.GetComponent<TileData>().setCharacter(generateCharAtPos(new Vector3(x, y, z)),true);
+                         tile.GetComponent<TileData>().setCharacter(generateCharAtPos(new Vector3(x, y, z)),true);
                     }
                 }
                 x++;
@@ -66,6 +66,22 @@ public class Map : MonoBehaviour
             y++;
             x = 0;
         }
+        //generamos a los reyes
+        //generamos su tile
+        //generamos el rey blanco
+        GameObject tileRey = Instantiate(Resources.Load("TileKing",typeof(GameObject))) as GameObject;
+        tileRey.name = "Tile del rey blanco";
+        tileRey.transform.position = new Vector3(-2, 0,2);
+        //no nos hace falta la posicion logica
+        tileRey.GetComponent<TileData>().setCharacter(generateCharAtPos(new Vector3(-1,0,0)),true);
+
+
+        //generamos el rey negro
+        tileRey = Instantiate(Resources.Load("TileKing", typeof(GameObject))) as GameObject;
+        tileRey.name = "Tile del rey negro";
+        tileRey.transform.position = new Vector3(12, -10, 2);
+        //no nos hace falta la posicion logica
+        tileRey.GetComponent<TileData>().setCharacter(generateCharAtPos(new Vector3(11, 2, 0)), true);
     }
 
     //Método para generar a los personajes jugables sobre los tiles del tablero

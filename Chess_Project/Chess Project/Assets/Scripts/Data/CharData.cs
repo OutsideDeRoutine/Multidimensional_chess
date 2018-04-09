@@ -10,6 +10,7 @@ public class CharData : MonoBehaviour {
     public UnityEvent canMoveThere;
     public UnityEvent canAttackThere;
     public UnityEvent canHitThere;
+    public UnityEvent canHitTheKing;
 
     //datos para el juego
 
