@@ -755,7 +755,7 @@ MonoBehaviour:
     tag: Blancas
   - name: SniperNegro1
     resource: Sniper
-    pos: {x: 10, y: 2, z: 0}
+    pos: {x: 9, y: 2, z: 0}
     tag: Negras
   - name: CaballoBlanco1
     resource: Caballo
@@ -771,7 +771,7 @@ MonoBehaviour:
     tag: Negras
   - name: CaballoNegro1
     resource: Caballo
-    pos: {x: 8, y: 2, z: 2}
+    pos: {x: 6, y: 2, z: 0}
     tag: Negras
   - name: CaballoBlanco2
     resource: Caballo
@@ -781,10 +781,18 @@ MonoBehaviour:
     resource: Sniper
     pos: {x: 4, y: 0, z: 0}
     tag: Blancas
-  - name: Caminante2dBlanco2
+  - name: Caminante2dNegro2
     resource: 2DGuy
-    pos: {x: 0, y: 0, z: 4}
-    tag: Blancas
+    pos: {x: 10, y: 2, z: 0}
+    tag: Negras
+  - name: SniperNegro2
+    resource: Sniper
+    pos: {x: 6, y: 2, z: 4}
+    tag: Negras
+  - name: CaballoNegro2
+    resource: Caballo
+    pos: {x: 9, y: 2, z: 4}
+    tag: Negras
 --- !u!4 &1193522705
 Transform:
   m_ObjectHideFlags: 0
