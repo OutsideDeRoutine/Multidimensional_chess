@@ -741,25 +741,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cursor: {fileID: 2800000, guid: d358ecc115b142945a2669833af93253, type: 3}
   fichas:
-  - name: Caminante2dBlanco
+  - name: Caminante2dBlanco1
     resource: 2DGuy
     pos: {x: 0, y: 0, z: 0}
     tag: Blancas
-  - name: Caminante2dNegro
+  - name: Caminante2dNegro1
     resource: 2DGuy
     pos: {x: 10, y: 2, z: 4}
     tag: Negras
-  - name: SniperBlanco
+  - name: SniperBlanco1
     resource: Sniper
-    pos: {x: 0, y: 0, z: 4}
+    pos: {x: 1, y: 0, z: 4}
     tag: Blancas
-  - name: SniperNegro
+  - name: SniperNegro1
     resource: Sniper
     pos: {x: 10, y: 2, z: 0}
     tag: Negras
-  - name: CaballoBlanco
+  - name: CaballoBlanco1
     resource: Caballo
-    pos: {x: 2, y: 0, z: 2}
+    pos: {x: 1, y: 0, z: 0}
     tag: Blancas
   - name: ReyBlanco
     resource: King
@@ -769,10 +769,22 @@ MonoBehaviour:
     resource: King
     pos: {x: 11, y: 2, z: 0}
     tag: Negras
-  - name: CaballoNegro
+  - name: CaballoNegro1
     resource: Caballo
     pos: {x: 8, y: 2, z: 2}
     tag: Negras
+  - name: CaballoBlanco2
+    resource: Caballo
+    pos: {x: 4, y: 0, z: 4}
+    tag: Blancas
+  - name: SniperBlanco2
+    resource: Sniper
+    pos: {x: 4, y: 0, z: 0}
+    tag: Blancas
+  - name: Caminante2dBlanco2
+    resource: 2DGuy
+    pos: {x: 0, y: 0, z: 4}
+    tag: Blancas
 --- !u!4 &1193522705
 Transform:
   m_ObjectHideFlags: 0

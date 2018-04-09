@@ -15,7 +15,7 @@ public abstract class IHitContiguo: MonoBehaviour, IHitKing
 {
     //si la fichas es blanca
     //miramos si puede atacar al rey negro
-    public bool canWhite(Vector3 from)
+    public virtual bool canWhite(Vector3 from)
     {
         if (from.x == 10 && from.y == 2)
         {
@@ -27,7 +27,7 @@ public abstract class IHitContiguo: MonoBehaviour, IHitKing
 
     //si la fichas es blanca
     //miramos si puede atacar al rey blanco
-    public bool canBlack(Vector3 from)
+    public virtual bool canBlack(Vector3 from)
     {
         if (from.x == 0 && from.y == 0)
         {

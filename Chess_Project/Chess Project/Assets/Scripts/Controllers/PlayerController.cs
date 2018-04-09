@@ -19,7 +19,7 @@ public class PlayerController : MonoBehaviour {
             selectedChar.GetComponent<CharData>().canMoveThere.Invoke();
             selectedChar.GetComponent<CharData>().canAttackThere.Invoke();
             selectedChar.GetComponent<CharData>().canHitThere.Invoke();
-
+            selectedChar.GetComponent<CharData>().canHitTheKing.Invoke();
         }
     }
 

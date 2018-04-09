@@ -29,6 +29,7 @@ GameObject:
   - component: {fileID: 114023354478110062}
   - component: {fileID: 64966078790579752}
   - component: {fileID: 114539512236827186}
+  - component: {fileID: 114742224844023670}
   m_Layer: 0
   m_Name: 2DGuy
   m_TagString: Untagged
@@ -177,7 +178,18 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   canHitTheKing:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114742224844023670}
+        m_MethodName: hitKing
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   vida: 15
@@ -216,6 +228,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bf55324c449086c458d01f160c523995, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &114742224844023670
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1198647590162968}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c43dd162a9b89d345959c2ee0b9dda6a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114802455881284674

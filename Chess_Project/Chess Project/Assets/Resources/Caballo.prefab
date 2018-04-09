@@ -29,6 +29,7 @@ GameObject:
   - component: {fileID: 114091710001676828}
   - component: {fileID: 64501887959184182}
   - component: {fileID: 114567817968899008}
+  - component: {fileID: 114020025064226916}
   m_Layer: 0
   m_Name: Caballo
   m_TagString: Untagged
@@ -104,6 +105,17 @@ MeshCollider:
   m_CookingOptions: 14
   m_SkinWidth: 0.01
   m_Mesh: {fileID: 4300000, guid: e976a77f9095ec14aae559234e714877, type: 3}
+--- !u!114 &114020025064226916
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1054457430809728}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a69391168338d4248b45b3bfaa4dc078, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114091710001676828
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -177,7 +189,18 @@ MonoBehaviour:
       Culture=neutral, PublicKeyToken=null
   canHitTheKing:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 114020025064226916}
+        m_MethodName: hitKing
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   vida: 10

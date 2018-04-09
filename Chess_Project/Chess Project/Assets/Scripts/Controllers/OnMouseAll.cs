@@ -98,6 +98,19 @@ public class OnMouseAll : MonoBehaviour {
                 player.ChangePlayer();
             }
         }
+        else if (this.tag == "TileKing")
+        {
+            if (this.GetComponent<TileData>().state == 3 && player.selectedChar != null)
+            {
+                resetAllTiles();
+                bool muerto = this.GetComponent<TileData>().character.GetComponent<CharData>().receibeDamage(player.selectedChar.GetComponent<CharData>().damage);
+                if (muerto == true)
+                {
+                    this.GetComponent<TileData>().destroyChar();
+                }
+                player.ChangePlayer();
+            }
+        }
     }
 
     void resetAllTiles()
@@ -117,6 +130,15 @@ public class OnMouseAll : MonoBehaviour {
             {
                 tile.GetComponent<TileData>().unSetHitTo();
             }
+        }
+
+        all = new ArrayList(GameObject.FindGameObjectsWithTag("TileKing"));
+        foreach (GameObject tile in all)
+        {          
+            if (tile.GetComponent<TileData>().state == 3)
+            {
+                tile.GetComponent<TileData>().unSetAttackTo();
+            }         
         }
     }
 

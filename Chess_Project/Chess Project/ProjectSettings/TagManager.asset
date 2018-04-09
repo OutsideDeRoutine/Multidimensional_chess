@@ -7,6 +7,7 @@ TagManager:
   - Tile
   - Blancas
   - Negras
+  - TileKing
   layers:
   - Default
   - TransparentFX
