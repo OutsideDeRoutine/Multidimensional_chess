@@ -794,6 +794,10 @@ MonoBehaviour:
     resource: Caballo
     pos: {x: 9, y: 2, z: 4}
     tag: Negras
+  - name: Caminante2dBlanco2
+    resource: 2DGuy
+    pos: {x: 0, y: 0, z: 4}
+    tag: Blancas
 --- !u!4 &1193522705
 Transform:
   m_ObjectHideFlags: 0

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class OnMouseAll : MonoBehaviour {
 
@@ -13,7 +14,7 @@ public class OnMouseAll : MonoBehaviour {
     {
         ColorUtility.TryParseHtmlString("#4D4D4DFF", out color);
         rend = GetComponent<Renderer>();
-        player=GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
+        player = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
         if (card != "")
         {
             cardo = GameObject.Find(card);
@@ -24,56 +25,33 @@ public class OnMouseAll : MonoBehaviour {
 
     void OnMouseEnter()
     {
-        rend.material.color += color;
+        if (rend != null)
+            rend.material.color += color;
         if (cardo != null)
         {
             cardo.GetComponentInChildren<UnityEngine.UI.Text>().text = GetComponent<CharData>().getData();
-            if(stopMe!=null) StopCoroutine(stopMe);
+            if (stopMe != null) StopCoroutine(stopMe);
             stopMe = StartCoroutine(moveCard());
         }
-
-        //HAY QUE QUITAR ESTO DE AQUI xd
-        if (this.tag == "Tile" && this.GetComponent<TileData>().state == 4 && player.selectedChar != null)
-        {
-            int vida1 = this.GetComponent<TileData>().character.GetComponent<CharData>().vida;
-            int vida2 = player.selectedChar.GetComponent<CharData>().vida;
-
-            if (vida1 > vida2)
-            {
-                player.selectedChar.GetComponent<Renderer>().material.color +=Color.red;
-            }
-            else if(vida2 > vida1)
-            {
-                this.GetComponent<TileData>().character.GetComponent<Renderer>().material.color += Color.red;
-            }
-            else if(vida2 == vida1)
-            {
-                player.selectedChar.GetComponent<Renderer>().material.color += Color.red;
-                this.GetComponent<TileData>().character.GetComponent<Renderer>().material.color += Color.red;
-            }
-        }
-        else if (this.tag == "Tile" && this.GetComponent<TileData>().state == 3 && player.selectedChar != null)
-        {
-            int vida1 = this.GetComponent<TileData>().character.GetComponent<CharData>().vida;
-            int damage = player.selectedChar.GetComponent<CharData>().damage;
-
-            if (vida1 - damage<=0)
-            {
-                this.GetComponent<TileData>().character.GetComponent<Renderer>().material.color += Color.red;
-            }
-        }
+        isGoingToDie(1);
     }
 
     void OnMouseExit()
     {
-        rend.material.color -= color;
+        if (rend != null)
+            rend.material.color -= color;
         if (cardo != null)
         {
             if (stopMe != null) StopCoroutine(stopMe);
             stopMe = StartCoroutine(moveCardBack());
         }
+        isGoingToDie(-1);
+    }
 
-        //HAY QUE QUITAR ESTO DE AQUI xd
+    // 1 on -1 off
+    void isGoingToDie(int on)
+    {
+
         if (this.tag == "Tile" && this.GetComponent<TileData>().state == 4 && player.selectedChar != null)
         {
             int vida1 = this.GetComponent<TileData>().character.GetComponent<CharData>().vida;
@@ -81,16 +59,16 @@ public class OnMouseAll : MonoBehaviour {
 
             if (vida1 > vida2)
             {
-                player.selectedChar.GetComponent<Renderer>().material.color -= Color.red;
+                player.selectedChar.GetComponent<Renderer>().material.color += Color.red * on;
             }
             else if (vida2 > vida1)
             {
-                this.GetComponent<TileData>().character.GetComponent<Renderer>().material.color -= Color.red;
+                this.GetComponent<TileData>().character.GetComponent<Renderer>().material.color += Color.red * on;
             }
             else if (vida2 == vida1)
             {
                 player.selectedChar.GetComponent<Renderer>().material.color -= Color.red;
-                this.GetComponent<TileData>().character.GetComponent<Renderer>().material.color -= Color.red;
+                this.GetComponent<TileData>().character.GetComponent<Renderer>().material.color += Color.red * on;
             }
         }
         else if (this.tag == "Tile" && this.GetComponent<TileData>().state == 3 && player.selectedChar != null)
@@ -98,22 +76,22 @@ public class OnMouseAll : MonoBehaviour {
             int vida1 = this.GetComponent<TileData>().character.GetComponent<CharData>().vida;
             int damage = player.selectedChar.GetComponent<CharData>().damage;
 
-            if (vida1 - damage<=0)
+            if (vida1 - damage <= 0)
             {
-                this.GetComponent<TileData>().character.GetComponent<Renderer>().material.color -= Color.red;
+                this.GetComponent<TileData>().character.GetComponent<Renderer>().material.color += Color.red * on;
             }
         }
     }
 
     void OnMouseDown()
     {
-        if(this.tag=="Blancas" || this.tag == "Negras")
+        if (this.tag == "Blancas" || this.tag == "Negras")
         {
             player.AssingChar(this.gameObject);
         }
-        else if(this.tag == "Tile")
+        else if (this.tag == "Tile")
         {
-            if (this.GetComponent<TileData>().state == 2 && player.selectedChar!=null)
+            if (this.GetComponent<TileData>().state == 2 && player.selectedChar != null)
             {
                 //Mover  , resetear tablero , cambiar de jugador
                 resetAllTiles();
@@ -123,12 +101,13 @@ public class OnMouseAll : MonoBehaviour {
             else if (this.GetComponent<TileData>().state == 3 && player.selectedChar != null)
             {
                 resetAllTiles();
-                bool muerto =this.GetComponent<TileData>().character.GetComponent<CharData>().receibeDamage(player.selectedChar.GetComponent<CharData>().damage);
+                bool muerto = this.GetComponent<TileData>().character.GetComponent<CharData>().receibeDamage(player.selectedChar.GetComponent<CharData>().damage);
                 if (muerto == true)
                 {
                     this.GetComponent<TileData>().destroyChar();
                 }
                 player.ChangePlayer();
+                StartCoroutine(hasEnded());
             }
             else if (this.GetComponent<TileData>().state == 4 && player.selectedChar != null)
             {
@@ -144,7 +123,7 @@ public class OnMouseAll : MonoBehaviour {
                 bool muerto2 = this.GetComponent<TileData>().character.GetComponent<CharData>().receibeDamage(vida2);
                 if (!muerto2 && muerto1)
                 {
-                    GameObject select=player.selectedChar;
+                    GameObject select = player.selectedChar;
                     StartCoroutine(GetComponent<TileData>().moveChar(select, GetComponent<TileData>().GetPos(select), select.GetComponent<CharData>().tile.GetComponent<TileData>().destroyChar));
                 }
                 else if (muerto2 && !muerto1)
@@ -158,6 +137,7 @@ public class OnMouseAll : MonoBehaviour {
                     StartCoroutine(GetComponent<TileData>().moveChar(select, GetComponent<TileData>().GetPos(select), select.GetComponent<CharData>().tile.GetComponent<TileData>().destroyChar, GetComponent<TileData>().destroyChar));
                 }
                 player.ChangePlayer();
+               StartCoroutine( hasEnded());
             }
         }
         else if (this.tag == "TileKing")
@@ -176,11 +156,6 @@ public class OnMouseAll : MonoBehaviour {
         }
     }
 
-    void End()
-    {
-        Application.LoadLevel(Application.loadedLevel);
-    }
-
     void resetAllTiles()
     {
         ArrayList all = new ArrayList(GameObject.FindGameObjectsWithTag("Tile"));
@@ -194,7 +169,7 @@ public class OnMouseAll : MonoBehaviour {
             {
                 tile.GetComponent<TileData>().unSetAttackTo();
             }
-            if(tile.GetComponent<TileData>().state == 4)
+            if (tile.GetComponent<TileData>().state == 4)
             {
                 tile.GetComponent<TileData>().unSetHitTo();
             }
@@ -202,11 +177,11 @@ public class OnMouseAll : MonoBehaviour {
 
         all = new ArrayList(GameObject.FindGameObjectsWithTag("TileKing"));
         foreach (GameObject tile in all)
-        {          
+        {
             if (tile.GetComponent<TileData>().state == 3)
             {
                 tile.GetComponent<TileData>().unSetAttackTo();
-            }         
+            }
         }
     }
 
@@ -221,6 +196,40 @@ public class OnMouseAll : MonoBehaviour {
     {
         yield return new WaitForSeconds(0.8f);
         cardo.GetComponent<Show>().showing = false;
+    }
+
+    //RECORDAR USAR StartCoroutine PARA LLAMAR A ESTA FUNCION AL FINAL DEL FRAME!
+    IEnumerator hasEnded()
+    {
+        yield return new WaitForEndOfFrame();
+        GameObject[] allW = GameObject.FindGameObjectsWithTag("Blancas");
+        bool white =FindIfOnlyHas2DG(allW);
+        allW = GameObject.FindGameObjectsWithTag("Negras");
+        bool black = FindIfOnlyHas2DG(allW);
+        Debug.Log("wtf");
+        if(white || black)
+            End();
+    }
+
+    bool FindIfOnlyHas2DG (GameObject[] all){
+        foreach(GameObject gm in all)
+        {
+            if (!gm.name.ToLower().Contains("rey") && !gm.name.ToLower().Contains("caminante"))
+            {
+                return false;
+            }
+        }
+        return true && all.Length>0;
+    }
+
+
+
+    //AQUI LAS COSAS DE CUANDO SE ACABE
+    void End()
+    {
+        //RESETEA EL NIVEL
+        SceneManager.LoadScene(SceneManager.GetActiveScene().path);
+        Debug.Log("reset");
     }
 
 }
