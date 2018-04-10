@@ -7,6 +7,11 @@ public class Show : MonoBehaviour {
     public bool showing;
     Vector3 positionGo = new Vector3(115f,145f,0f);
     Vector3 positionBack = new Vector3(115f, -150f, 0f);
+
+    void Start()
+    {
+        transform.position = positionBack;
+    }
     // Update is called once per frame
     void Update () {
         if(showing)
