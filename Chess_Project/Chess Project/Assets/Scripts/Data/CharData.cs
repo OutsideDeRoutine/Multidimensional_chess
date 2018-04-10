@@ -40,7 +40,12 @@ public class CharData : MonoBehaviour {
 
     public Boolean receibeDamage(int damageRecibed)
     {
+        
         this.vida -= damageRecibed;
+        if (this.name.ToLower().Contains("rey"))
+        {
+            this.GetComponent<UpdateLive>().UpdateMe();
+        }
         Debug.Log("A la pieza " + this.name + " le queda " + this.vida + "\n");
         if (this.vida <= 0)
         {
