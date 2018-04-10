@@ -21,7 +21,7 @@ public abstract class AbstractHit: MonoBehaviour,IHit
 
         foreach (GameObject tile in all)
         {
-            if (tile.GetComponent<TileData>().state == 4)
+            if (tile.GetComponent<TileData>().state == TileData.State.Hit)
             {
                 tile.GetComponent<TileData>().unSetHitTo();
             }
@@ -31,7 +31,7 @@ public abstract class AbstractHit: MonoBehaviour,IHit
 
         var query = from GameObject tile in all
                     where can(fromo, tile.GetComponent<TileData>().position) &&
-                          tile.GetComponent<TileData>().state == 1 &&
+                          tile.GetComponent<TileData>().state == TileData.State.Taken &&
                           tile.GetComponent<TileData>().character.tag != this.tag
                     select tile;
 

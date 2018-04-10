@@ -10,7 +10,7 @@ public class DGuyAttack : MonoBehaviour {
         ArrayList all = new ArrayList(GameObject.FindGameObjectsWithTag("Tile"));
         foreach (GameObject tile in all)
         {
-            if (tile.GetComponent<TileData>().state == 3)
+            if (tile.GetComponent<TileData>().state == TileData.State.Attack)
             {
                 tile.GetComponent<TileData>().unSetAttackTo();
             }
@@ -20,7 +20,7 @@ public class DGuyAttack : MonoBehaviour {
 
         var query = from GameObject tile in all
                     where can(fromo, tile.GetComponent<TileData>().position) &&
-                          tile.GetComponent<TileData>().state == 1 &&
+                          tile.GetComponent<TileData>().state == TileData.State.Taken &&
                           tile.GetComponent<TileData>().character.tag != this.tag
                     select tile;
 

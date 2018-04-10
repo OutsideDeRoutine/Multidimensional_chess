@@ -35,21 +35,15 @@ public class CharData : MonoBehaviour {
 
     public Vector3 getTilePosition()
     {
-       return this.tile.GetComponent<TileData>().position;
+       return tile.GetComponent<TileData>().position;
     }
 
     public Boolean receibeDamage(int damageRecibed)
     {
         
-        this.vida -= damageRecibed;
-        if (this.name.ToLower().Contains("rey"))
+        vida -= damageRecibed;
+        if (vida <= 0)
         {
-            this.GetComponent<UpdateLive>().UpdateMe();
-        }
-        Debug.Log("A la pieza " + this.name + " le queda " + this.vida + "\n");
-        if (this.vida <= 0)
-        {
-            Debug.Log("La pieza "+ this.name + " ha muerto \n");
             return true;
         }       
         return false;
@@ -57,7 +51,7 @@ public class CharData : MonoBehaviour {
 
     public Boolean isDead()
     {
-        return (vida <= 0) ? true : false;
+        return (vida <= 0);
     }
 
     internal string getData()

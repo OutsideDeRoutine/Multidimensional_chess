@@ -52,7 +52,7 @@ public class OnMouseAll : MonoBehaviour {
     void isGoingToDie(int on)
     {
 
-        if (this.tag == "Tile" && this.GetComponent<TileData>().state == 4 && player.selectedChar != null)
+        if (this.tag == "Tile" && this.GetComponent<TileData>().state == TileData.State.Hit && player.selectedChar != null)
         {
             int vida1 = this.GetComponent<TileData>().character.GetComponent<CharData>().vida;
             int vida2 = player.selectedChar.GetComponent<CharData>().vida;
@@ -67,11 +67,11 @@ public class OnMouseAll : MonoBehaviour {
             }
             else if (vida2 == vida1)
             {
-                player.selectedChar.GetComponent<Renderer>().material.color -= Color.red;
+                player.selectedChar.GetComponent<Renderer>().material.color += Color.red * on;
                 this.GetComponent<TileData>().character.GetComponent<Renderer>().material.color += Color.red * on;
             }
         }
-        else if (this.tag == "Tile" && this.GetComponent<TileData>().state == 3 && player.selectedChar != null)
+        else if (this.tag == "Tile" && this.GetComponent<TileData>().state == TileData.State.Attack && player.selectedChar != null)
         {
             int vida1 = this.GetComponent<TileData>().character.GetComponent<CharData>().vida;
             int damage = player.selectedChar.GetComponent<CharData>().damage;
@@ -91,14 +91,14 @@ public class OnMouseAll : MonoBehaviour {
         }
         else if (this.tag == "Tile")
         {
-            if (this.GetComponent<TileData>().state == 2 && player.selectedChar != null)
+            if (this.GetComponent<TileData>().state == TileData.State.Move && player.selectedChar != null)
             {
                 //Mover  , resetear tablero , cambiar de jugador
                 resetAllTiles();
                 GetComponent<TileData>().setCharacter(player.selectedChar);
                 player.ChangePlayer();
             }
-            else if (this.GetComponent<TileData>().state == 3 && player.selectedChar != null)
+            else if (this.GetComponent<TileData>().state == TileData.State.Attack && player.selectedChar != null)
             {
                 resetAllTiles();
                 bool muerto = this.GetComponent<TileData>().character.GetComponent<CharData>().receibeDamage(player.selectedChar.GetComponent<CharData>().damage);
@@ -107,9 +107,9 @@ public class OnMouseAll : MonoBehaviour {
                     this.GetComponent<TileData>().destroyChar();
                 }
                 player.ChangePlayer();
-                StartCoroutine(hasEnded());
+                hasEnded();
             }
-            else if (this.GetComponent<TileData>().state == 4 && player.selectedChar != null)
+            else if (this.GetComponent<TileData>().state == TileData.State.Hit && player.selectedChar != null)
             {
                 resetAllTiles();
                 /*vamos a comprobar las tres opciones
@@ -137,17 +137,19 @@ public class OnMouseAll : MonoBehaviour {
                     StartCoroutine(GetComponent<TileData>().moveChar(select, GetComponent<TileData>().GetPos(select), select.GetComponent<CharData>().tile.GetComponent<TileData>().destroyChar, GetComponent<TileData>().destroyChar));
                 }
                 player.ChangePlayer();
-               StartCoroutine( hasEnded());
+               hasEnded();
             }
         }
         else if (this.tag == "TileKing")
         {
-            if (this.GetComponent<TileData>().state == 3 && player.selectedChar != null)
+            if (this.GetComponent<TileData>().state == TileData.State.Attack && player.selectedChar != null)
             {
                 resetAllTiles();
                 bool muerto = this.GetComponent<TileData>().character.GetComponent<CharData>().receibeDamage(player.selectedChar.GetComponent<CharData>().damage);
                 if (muerto == true)
                 {
+                    if (this.GetComponent<TileData>().character.tag == "Blancas") BlackWin();
+                    else WhiteWin();
                     this.GetComponent<TileData>().destroyChar();
                     End();
                 }
@@ -161,15 +163,15 @@ public class OnMouseAll : MonoBehaviour {
         ArrayList all = new ArrayList(GameObject.FindGameObjectsWithTag("Tile"));
         foreach (GameObject tile in all)
         {
-            if (tile.GetComponent<TileData>().state == 2)
+            if (tile.GetComponent<TileData>().state == TileData.State.Move)
             {
                 tile.GetComponent<TileData>().unSetMovableTo();
             }
-            if (tile.GetComponent<TileData>().state == 3)
+            if (tile.GetComponent<TileData>().state == TileData.State.Attack)
             {
                 tile.GetComponent<TileData>().unSetAttackTo();
             }
-            if (tile.GetComponent<TileData>().state == 4)
+            if (tile.GetComponent<TileData>().state == TileData.State.Hit)
             {
                 tile.GetComponent<TileData>().unSetHitTo();
             }
@@ -178,40 +180,67 @@ public class OnMouseAll : MonoBehaviour {
         all = new ArrayList(GameObject.FindGameObjectsWithTag("TileKing"));
         foreach (GameObject tile in all)
         {
-            if (tile.GetComponent<TileData>().state == 3)
+            if (tile.GetComponent<TileData>().state == TileData.State.Attack)
             {
                 tile.GetComponent<TileData>().unSetAttackTo();
             }
         }
     }
 
-    IEnumerator moveCard()
+    private IEnumerator moveCard()
     {
         yield return new WaitForSeconds(0.8f);
         cardo.GetComponent<Show>().showing = true;
     }
 
 
-    IEnumerator moveCardBack()
+    private IEnumerator moveCardBack()
     {
         yield return new WaitForSeconds(0.8f);
         cardo.GetComponent<Show>().showing = false;
     }
 
-    //RECORDAR USAR StartCoroutine PARA LLAMAR A ESTA FUNCION AL FINAL DEL FRAME!
-    IEnumerator hasEnded()
+    void hasEnded()
+    {
+        StartCoroutine(hasEndFunc());
+    }
+
+    //NO LLAMAR DE FUERA, Y RECORDAR USAR StartCoroutine PARA LLAMAR A ESTA FUNCION AL FINAL DEL FRAME!
+    private IEnumerator hasEndFunc()
     {
         yield return new WaitForEndOfFrame();
         GameObject[] allW = GameObject.FindGameObjectsWithTag("Blancas");
         bool white =FindIfOnlyHas2DG(allW);
         allW = GameObject.FindGameObjectsWithTag("Negras");
         bool black = FindIfOnlyHas2DG(allW);
-        Debug.Log("wtf");
         if(white || black)
-            End();
+        {
+            if (white && black) Draw();
+            else if (white) BlackWin();
+            else if (black) WhiteWin();
+        }
+            
     }
 
-    bool FindIfOnlyHas2DG (GameObject[] all){
+    private void Draw()
+    {
+        Debug.Log("draw");
+        End();
+    }
+
+    private void WhiteWin()
+    {
+        Debug.Log("white win");
+        End();
+    }
+
+    private void BlackWin()
+    {
+        Debug.Log("black win");
+        End();
+    }
+
+    private bool FindIfOnlyHas2DG (GameObject[] all){
         foreach(GameObject gm in all)
         {
             if (!gm.name.ToLower().Contains("rey") && !gm.name.ToLower().Contains("caminante"))
@@ -219,17 +248,16 @@ public class OnMouseAll : MonoBehaviour {
                 return false;
             }
         }
-        return true && all.Length>0;
+        return true && all.Length>1;
     }
 
 
 
     //AQUI LAS COSAS DE CUANDO SE ACABE
-    void End()
+    private void End()
     {
         //RESETEA EL NIVEL
         SceneManager.LoadScene(SceneManager.GetActiveScene().path);
-        Debug.Log("reset");
     }
 
 }
