@@ -7,6 +7,6 @@ public class CaballoAttack : DGuyAttack
 
     public override bool can(Vector3 from, Vector3 where)
     {
-        return (from.y == where.y && Mathf.Abs( from.x - where.x)==1 && Mathf.Abs(from.z - where.z) == 1);
+        return (from.y == where.y && (Mathf.Abs( from.x - where.x)<=1 && Mathf.Abs(from.z - where.z) <= 1));
     }
 }

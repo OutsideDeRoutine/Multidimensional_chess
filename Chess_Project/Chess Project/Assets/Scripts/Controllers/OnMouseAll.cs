@@ -31,6 +31,37 @@ public class OnMouseAll : MonoBehaviour {
             if(stopMe!=null) StopCoroutine(stopMe);
             stopMe = StartCoroutine(moveCard());
         }
+
+        //HAY QUE QUITAR ESTO DE AQUI xd
+        if (this.tag == "Tile" && this.GetComponent<TileData>().state == 4 && player.selectedChar != null)
+        {
+            int vida1 = this.GetComponent<TileData>().character.GetComponent<CharData>().vida;
+            int vida2 = player.selectedChar.GetComponent<CharData>().vida;
+
+            if (vida1 > vida2)
+            {
+                player.selectedChar.GetComponent<Renderer>().material.color +=Color.red;
+            }
+            else if(vida2 > vida1)
+            {
+                this.GetComponent<TileData>().character.GetComponent<Renderer>().material.color += Color.red;
+            }
+            else if(vida2 == vida1)
+            {
+                player.selectedChar.GetComponent<Renderer>().material.color += Color.red;
+                this.GetComponent<TileData>().character.GetComponent<Renderer>().material.color += Color.red;
+            }
+        }
+        else if (this.tag == "Tile" && this.GetComponent<TileData>().state == 3 && player.selectedChar != null)
+        {
+            int vida1 = this.GetComponent<TileData>().character.GetComponent<CharData>().vida;
+            int damage = player.selectedChar.GetComponent<CharData>().damage;
+
+            if (vida1 - damage<=0)
+            {
+                this.GetComponent<TileData>().character.GetComponent<Renderer>().material.color += Color.red;
+            }
+        }
     }
 
     void OnMouseExit()
@@ -40,6 +71,37 @@ public class OnMouseAll : MonoBehaviour {
         {
             if (stopMe != null) StopCoroutine(stopMe);
             stopMe = StartCoroutine(moveCardBack());
+        }
+
+        //HAY QUE QUITAR ESTO DE AQUI xd
+        if (this.tag == "Tile" && this.GetComponent<TileData>().state == 4 && player.selectedChar != null)
+        {
+            int vida1 = this.GetComponent<TileData>().character.GetComponent<CharData>().vida;
+            int vida2 = player.selectedChar.GetComponent<CharData>().vida;
+
+            if (vida1 > vida2)
+            {
+                player.selectedChar.GetComponent<Renderer>().material.color -= Color.red;
+            }
+            else if (vida2 > vida1)
+            {
+                this.GetComponent<TileData>().character.GetComponent<Renderer>().material.color -= Color.red;
+            }
+            else if (vida2 == vida1)
+            {
+                player.selectedChar.GetComponent<Renderer>().material.color -= Color.red;
+                this.GetComponent<TileData>().character.GetComponent<Renderer>().material.color -= Color.red;
+            }
+        }
+        else if (this.tag == "Tile" && this.GetComponent<TileData>().state == 3 && player.selectedChar != null)
+        {
+            int vida1 = this.GetComponent<TileData>().character.GetComponent<CharData>().vida;
+            int damage = player.selectedChar.GetComponent<CharData>().damage;
+
+            if (vida1 - damage<=0)
+            {
+                this.GetComponent<TileData>().character.GetComponent<Renderer>().material.color -= Color.red;
+            }
         }
     }
 
@@ -107,10 +169,16 @@ public class OnMouseAll : MonoBehaviour {
                 if (muerto == true)
                 {
                     this.GetComponent<TileData>().destroyChar();
+                    End();
                 }
                 player.ChangePlayer();
             }
         }
+    }
+
+    void End()
+    {
+        Application.LoadLevel(Application.loadedLevel);
     }
 
     void resetAllTiles()

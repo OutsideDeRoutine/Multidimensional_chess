@@ -28,7 +28,6 @@ GameObject:
   - component: {fileID: 114422029200608930}
   - component: {fileID: 114091710001676828}
   - component: {fileID: 64501887959184182}
-  - component: {fileID: 114567817968899008}
   - component: {fileID: 114020025064226916}
   m_Layer: 0
   m_Name: Caballo
@@ -214,17 +213,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 464676fb7b265e5449661dfa48e0ad5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &114567817968899008
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 1054457430809728}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf55324c449086c458d01f160c523995, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!114 &114780405283864176
