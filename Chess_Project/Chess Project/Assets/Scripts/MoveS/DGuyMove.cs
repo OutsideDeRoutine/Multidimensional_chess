@@ -13,7 +13,7 @@ public class DGuyMove : MonoBehaviour {
         foreach (GameObject tile in all)
         {
             if (tile.GetComponent<TileData>().state == TileData.State.Move)
-            {
+            {             
                 tile.GetComponent<TileData>().unSetMovableTo();
             }
         }

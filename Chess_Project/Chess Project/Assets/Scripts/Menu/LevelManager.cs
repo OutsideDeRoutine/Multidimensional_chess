@@ -2,10 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine.SceneManagement;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class LevelManager : MonoBehaviour {
 
     public GameObject canvas;
+
 
     void Start()
     {
@@ -44,4 +46,15 @@ public class LevelManager : MonoBehaviour {
     {
         Application.Quit();
     }
+
+    public void changeAbout()
+    {
+        SceneManager.LoadScene("AboutScene");
+    }
+
+    public void changeMainMenu()
+    {
+        SceneManager.LoadScene("MenuScene");
+    }
+
 }
