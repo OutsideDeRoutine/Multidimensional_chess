@@ -8,6 +8,8 @@ TagManager:
   - Blancas
   - Negras
   - TileKing
+  - MenuItem
+  - AboutItem
   layers:
   - Default
   - TransparentFX
