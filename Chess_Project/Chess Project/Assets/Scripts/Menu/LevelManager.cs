@@ -7,18 +7,33 @@ public class LevelManager : MonoBehaviour {
 
     public GameObject canvas;
 
-	public void empezarJuego()
+    void Start()
     {
-        StartCoroutine(Fade("test",1,Color.black));
+        StartCoroutine(FadeIn(1.5f));
     }
-
-    IEnumerator Fade(string level, float time, Color color)
+    IEnumerator FadeIn(float time)
     {
         float currentTime = Time.time;
-        canvas.GetComponent<Canvas>().enabled=false;
+        canvas.GetComponent<Canvas>().GetComponent<CanvasGroup>().alpha = 0;
+        while (Time.time - currentTime < time)
+        {
+            canvas.GetComponent<Canvas>().GetComponent<CanvasGroup>().alpha = Mathf.Abs(((Time.time - currentTime) / time));
+            yield return new WaitForEndOfFrame();
+        }
+    }
+
+    public void empezarJuego()
+    {
+        StartCoroutine(FadeOut("test",1,Color.black));
+    }
+
+    IEnumerator FadeOut(string level, float time, Color color)
+    {
+        float currentTime = Time.time;
         Color bcolor = Camera.main.backgroundColor;
         while (Time.time- currentTime < time)
         {
+            canvas.GetComponent<Canvas>().GetComponent<CanvasGroup>().alpha =  Mathf.Abs(((Time.time - currentTime) / time)-1);
             Camera.main.backgroundColor= Color.Lerp(bcolor, color, (Time.time - currentTime)/time);
             yield return new WaitForEndOfFrame();
         }
