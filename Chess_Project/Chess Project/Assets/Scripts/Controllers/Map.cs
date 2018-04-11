@@ -5,6 +5,8 @@ using UnityEngine;
 
 public class Map : MonoBehaviour
 {
+    public GameObject fadeImg;
+
     public Texture2D cursor;
 
     [System.Serializable]
@@ -36,6 +38,18 @@ public class Map : MonoBehaviour
         Cursor.SetCursor(cursor, Vector2.zero, CursorMode.Auto);
         //tiles = new Dictionary<String, GameObject>();
         GenerateMap(sideform.Split('|'));
+        StartCoroutine(FadeIn(1.5f));
+    }
+
+    IEnumerator FadeIn(float time)
+    {
+        float currentTime = Time.time;
+        fadeImg.GetComponent<CanvasGroup>().alpha = 0;
+        while (Time.time - currentTime < time)
+        {
+            fadeImg.GetComponent<CanvasGroup>().alpha = Mathf.Abs(((Time.time - currentTime) / time)-1);
+            yield return new WaitForEndOfFrame();
+        }
     }
     //revisar
     //metodo para generar los tiles del tablero
