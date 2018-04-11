@@ -120,6 +120,9 @@ public class TileData : MonoBehaviour {
 
     internal void destroyChar()
     {
+        if (character.GetComponent<OnMouseAll>().stopMe != null) StopCoroutine(character.GetComponent<OnMouseAll>().stopMe);
+        character.GetComponent<OnMouseAll>().stopMe = StartCoroutine(character.GetComponent<OnMouseAll>().moveCardBack());
+
         GameObject.Destroy(character);
         character = null;
         state = State.Empty;

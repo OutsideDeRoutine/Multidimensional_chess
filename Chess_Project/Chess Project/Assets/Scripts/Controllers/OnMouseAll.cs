@@ -21,7 +21,7 @@ public class OnMouseAll : MonoBehaviour {
         }
     }
 
-    Coroutine stopMe;
+   public Coroutine stopMe;
 
     void OnMouseEnter()
     {
@@ -104,6 +104,7 @@ public class OnMouseAll : MonoBehaviour {
                 bool muerto = this.GetComponent<TileData>().character.GetComponent<CharData>().receibeDamage(player.selectedChar.GetComponent<CharData>().damage);
                 if (muerto == true)
                 {
+
                     this.GetComponent<TileData>().destroyChar();
                 }
                 player.ChangePlayer();
@@ -187,14 +188,14 @@ public class OnMouseAll : MonoBehaviour {
         }
     }
 
-    private IEnumerator moveCard()
+    public IEnumerator moveCard()
     {
         yield return new WaitForSeconds(0.8f);
         cardo.GetComponent<Show>().showing = true;
     }
 
 
-    private IEnumerator moveCardBack()
+    public IEnumerator moveCardBack()
     {
         yield return new WaitForSeconds(0.8f);
         cardo.GetComponent<Show>().showing = false;
