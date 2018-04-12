@@ -124,20 +124,20 @@ public class OnMouseAll : MonoBehaviour {
                 if (!muerto2 && muerto1)
                 {
                     GameObject select = player.selectedChar;
-                    StartCoroutine(GetComponent<TileData>().moveChar(select, GetComponent<TileData>().GetPos(select), select.GetComponent<CharData>().tile.GetComponent<TileData>().destroyChar));
+                    StartCoroutine(GetComponent<TileData>().moveChar(select, GetComponent<TileData>().GetPos(select), select.GetComponent<CharData>().tile.GetComponent<TileData>().destroyChar, hasEnded));
                 }
                 else if (muerto2 && !muerto1)
                 {
                     GetComponent<TileData>().destroyChar();
                     GetComponent<TileData>().setCharacter(player.selectedChar);
+                    hasEnded();
                 }
                 else
                 {
                     GameObject select = player.selectedChar;
-                    StartCoroutine(GetComponent<TileData>().moveChar(select, GetComponent<TileData>().GetPos(select), select.GetComponent<CharData>().tile.GetComponent<TileData>().destroyChar, GetComponent<TileData>().destroyChar));
+                    StartCoroutine(GetComponent<TileData>().moveChar(select, GetComponent<TileData>().GetPos(select), select.GetComponent<CharData>().tile.GetComponent<TileData>().destroyChar, GetComponent<TileData>().destroyChar, hasEnded));
                 }
                 player.ChangePlayer();
-               hasEnded();
             }
         }
         else if (this.tag == "TileKing")
