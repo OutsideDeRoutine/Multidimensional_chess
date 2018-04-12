@@ -1,8 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour {
+
+    public GameObject image;
+    public Sprite whiteImg;
+    public Sprite blackImg;
 
     public bool player; //White false Black true;
     public GameObject selectedChar;
@@ -31,5 +36,13 @@ public class PlayerController : MonoBehaviour {
             selectedChar = null;
         }
         player = player? false : true;
+        if (player)
+        {
+            image.GetComponent<Image>().sprite = blackImg;
+        }
+        else
+        {
+            image.GetComponent<Image>().sprite = whiteImg;
+        }
     }
 }

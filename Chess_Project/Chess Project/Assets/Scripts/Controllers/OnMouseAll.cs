@@ -20,7 +20,6 @@ public class OnMouseAll : MonoBehaviour {
             cardo = GameObject.Find(card);
         }
     }
-
    public Coroutine stopMe;
 
     void OnMouseEnter()
@@ -225,20 +224,20 @@ public class OnMouseAll : MonoBehaviour {
 
     private void Draw()
     {
-        Debug.Log("draw");
-        End();
+        player.GetComponent<EndShow>().ShowEnd(EndShow.Conditions.Tie);
+        StartCoroutine(End());
     }
 
     private void WhiteWin()
     {
-        Debug.Log("white win");
-        End();
+        player.GetComponent<EndShow>().ShowEnd(EndShow.Conditions.White);
+        StartCoroutine(End());
     }
 
     private void BlackWin()
     {
-        Debug.Log("black win");
-        End();
+        player.GetComponent<EndShow>().ShowEnd(EndShow.Conditions.Black);
+        StartCoroutine(End());
     }
 
     private bool FindIfOnlyHas2DG (GameObject[] all){
@@ -255,10 +254,20 @@ public class OnMouseAll : MonoBehaviour {
 
 
     //AQUI LAS COSAS DE CUANDO SE ACABE
-    private void End()
+    private IEnumerator End()
     {
-        //RESETEA EL NIVEL
-        SceneManager.LoadScene(SceneManager.GetActiveScene().path);
+        bool c = true;
+        while (c)
+        {
+            if (Input.GetKey(KeyCode.Return))
+            {
+                c = false;
+                SceneManager.LoadScene(SceneManager.GetActiveScene().path);
+            }
+            yield return new WaitForFixedUpdate();
+            
+        }
+        
     }
 
 }
